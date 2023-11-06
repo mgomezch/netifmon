@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install -r requirements.txt
+RUN pip install -r Flask Flask-Prometheus netifaces prometheus-client
 
 EXPOSE 5000
 
