@@ -264,7 +264,7 @@ def main():
   )
 
   parser.add_argument(
-    "-p",
+    "-l",
     "--prefix-length",
     default=64,
     help="IPv6 network prefix length used when masking the interface's first assigned address to determine its network prefix",  # pylint: disable=line-too-long
@@ -284,6 +284,13 @@ def main():
     help="Persist state in this file",
   )
 
+  parser.add_argument(
+    "-p",
+    "--port",
+    default=9101,
+    help="Flask port",
+  )
+
   args = parser.parse_args()
   if args.interface:
     metrics = Metrics(
@@ -291,10 +298,11 @@ def main():
       args.interface,
       args.prefix_length,
       args.file,
+      args.port,
     )
 
     start_refresh_loop()
-    app.run()
+    app.run(port=args.port)
 
   else:
     print("No interface name provided")
