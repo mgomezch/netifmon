@@ -8,4 +8,4 @@ RUN pip install -r Flask netifaces prometheus-client
 
 EXPOSE 9101
 
-CMD ["python", "main.py"]
+CMD ["python", "main.py", "-i", "br0", "-p", "60"]
