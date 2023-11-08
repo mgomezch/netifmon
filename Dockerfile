@@ -4,8 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN pip install -r argparse atexit json threading itertools typing netaddr.ip prometheus_client
+RUN pip install -r Flask netifaces prometheus-client
 
-EXPOSE 5000
+EXPOSE 9101
 
 CMD ["python", "app.py"]
