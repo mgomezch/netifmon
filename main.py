@@ -5,7 +5,7 @@ import threading
 from itertools import islice
 from typing import Optional
 
-# import netifaces
+import netifaces
 from flask import Flask, jsonify
 from netaddr.ip import IPNetwork
 from prometheus_client import Gauge, generate_latest
@@ -25,42 +25,6 @@ def log(*args, **kwargs):
   global app
   app.logger.info(*args, **kwargs)
   print(*args)
-
-
-class MockNetifaces(object):
-  AF_INET = 4
-  AF_INET6 = 6
-
-  def __init__(self):
-    pass
-
-  def interfaces(self):
-    return [
-      "eth0",
-      "enp0s1",
-    ]
-
-  def ifaddresses(self, _interface):
-    return {
-
-      netifaces.AF_INET: [
-        {
-          "addr": "192.168.1.1",
-        },
-      ],
-
-      netifaces.AF_INET6: [
-        {
-          "addr": "2001:db8:3333:4444:5555:6666:7777:8888",
-        },
-        {
-          "addr": "fd12:3456:789a:1::1",
-        },
-      ]
-
-    }
-
-netifaces = MockNetifaces()
 
 
 class MetricsState(object):
