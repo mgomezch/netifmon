@@ -52,6 +52,7 @@ class Metrics(object):
     interface,
     prefix_length,
     file_path,
+    port,
   ):
     self.polling_interval = polling_interval
     self.interface = interface
